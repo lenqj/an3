@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form th:action="@{~/api/professor/exam/add-grade}" method="post">
+        <div class="mb-4">
+            <label for="examName" class="block text-gray-700">Exam:</label>
+            <select id="examName" name="examName"
+                    class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option th:value="null">Select an exam</option>
+                <option th:each="exam : ${exams}" th:text="${exam.name}" th:value="${exam.name}"></option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="studentName" class="block text-gray-700">Student:</label>
+            <select id="studentName" name="studentName"
+                    class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option th:value="null">Select a student</option>
+                <option th:each="student : ${students}" th:text="${student.username}" th:value="${student.username}"></option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="grade" class="block text-sm font-bold mb-2">Grade:</label>
+            <input type="number" id="grade" name="grade" class="w-full bg-white border border-gray-300 rounded py-2 px-3 focus:outline-none focus:border-blue-500" step="0.1" min="1" max="10">
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+    </form>
+</div>
+</body>
+</html>

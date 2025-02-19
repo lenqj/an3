@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <table class="w-full border-collapse border border-gray-300">
+        <thead>
+        <tr>
+            <th class="px-4 py-2 bg-gray-200">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}" th:object="${student}">
+            <td class="border px-4 py-2">
+                <a th:href="@{~/api/student/view-grades/{userUsername}(userUsername=${student.username})}"
+                   th:text="${student.username}"
+                   class="text-blue-500 hover:underline"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

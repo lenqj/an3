@@ -1,0 +1,1 @@
+[GradeDTO(examDTO=ExamDTO(name=Exam1, course=CourseDTO(name=course1, description=description1, students=null, exams=null, professorDTO=null), grades=null), studentDTO=null, grade=9.0)]

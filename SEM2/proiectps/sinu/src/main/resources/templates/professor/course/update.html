@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/professor/course/update}"
+          th:object="${course}">
+        <div class="grid grid-cols-2 gap-4 mb-3">
+            <div class="form-group">
+                <label class="text-gray-700">Title:</label>
+                <input class="form-input border border-info" th:field="${course.name}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="courseProfessor" class="block text-gray-700">Professor:</label>
+                <select id="courseProfessor" name="courseProfessor" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <option th:value="${null}">select option</option>
+                    <option name="courseProfessor" th:each="professor : ${professors}" th:value="${professor.username}" th:text="${professor.username}"></option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="courseStudents" class="block text-gray-700">Student:</label>
+                <select id="courseStudents" name="courseStudents" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" multiple>
+                    <option th:value="${null}">select option</option>
+                    <option name="courseProfessor" th:each="student : ${students}" th:value="${student.username}" th:text="${student.username}"></option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label class="text-gray-700">Description:</label>
+                <input class="form-input border border-info" th:field="${course.description}">
+                <p class="text-red-500 text-xs italic" th:errors="${course.description}">*</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <input class="btn btn-success border border-info" type="submit" value="Update">
+            </div>
+        </div>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

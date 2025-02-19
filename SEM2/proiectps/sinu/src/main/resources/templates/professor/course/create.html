@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/professor/course/create}" th:object="${courseDTO}">
+        <div class="grid grid-cols-2 gap-4 mb-3">
+            <div class="form-group">
+                <label for="name" class="text-gray-700">Title:</label>
+                <input id="name" name="name" class="form-input border border-info" th:field="${courseDTO.name}">
+            </div>
+            <div class="form-group">
+                <label for="courseProfessor" class="block text-gray-700">Professor:</label>
+                <select id="courseProfessor" name="courseProfessor" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <option th:value="${null}">select option</option>
+                    <option name="courseProfessor" th:each="professor : ${professors}" th:value="${professor.username}" th:text="${professor.username}"></option>
+                </select>
+                <p class="text-red-500 text-xs italic" th:errors="${courseDTO.professorDTO}">*</p>
+
+            </div>
+            <div class="form-group">
+                <label class="text-gray-700">Description:</label>
+                <input class="form-input border border-info" th:field="${courseDTO.description}">
+                <p class="text-red-500 text-xs italic" th:errors="${courseDTO.description}">*</p>
+
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <input class="btn btn-success border border-info" type="submit" value="Create">
+            </div>
+        </div>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

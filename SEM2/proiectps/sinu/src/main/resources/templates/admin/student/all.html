@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <table class="w-full border-collapse border border-gray-300">
+        <thead>
+        <tr>
+            <th class="px-4 py-2 bg-gray-200">Name</th>
+            <th class="px-4 py-2 bg-gray-200">Update</th>
+            <th class="px-4 py-2 bg-gray-200">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}" th:object="${student}">
+            <td class="border px-4 py-2">
+                <a th:text="${student.username}" class="text-blue-500 hover:underline"></a>
+            </td>
+            <td class="border px-4 py-2">
+                <form method="post" th:action="@{~/api/admin/student/update/{studentUsername}(studentUsername=${student.username})}">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                </form>
+            </td>
+            <td class="border px-4 py-2">
+                <form method="post" th:action="@{~/api/admin/student/delete}">
+                    <input name="studentUsernames" th:value="${student.username}" type="hidden">
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{~/api/admin/student/create}" class="block mt-4 text-blue-500 hover:underline">Create Student</a>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

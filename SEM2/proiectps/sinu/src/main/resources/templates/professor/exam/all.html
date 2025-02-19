@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+        <thead class="bg-gray-800 text-white">
+        <tr>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Update</th>
+            <th class="px-4 py-2">Delete</th>
+        </tr>
+        </thead>
+        <tbody class="text-gray-700">
+        <tr th:each="exam : ${exams}" th:object="${exam}">
+            <td class="border px-4 py-2">
+                <a th:text="${exam.name}" class="text-blue-500 hover:underline"></a>
+            </td>
+            <td class="border px-4 py-2">
+                <form method="post"
+                      th:action="@{~/api/professor/exam/update/{examName}(examName=${exam.name})}">
+                    <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Update
+                    </button>
+                </form>
+            </td>
+            <td class="border px-4 py-2">
+                <form method="post" th:action="@{~/api/professor/exam/delete}">
+                    <input name="examNames" th:value="${exam.name}" type="hidden">
+                    <button type="submit"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{~/api/professor/exam/create}"
+       class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Create Exam
+    </a>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/professor/exam/update}" th:object="${exam}">
+        <div class="form-group">
+            <label for="name" class="block text-gray-700">Name:</label>
+            <input type="text" id="name" name="name" th:field="${exam.name}" readonly
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+        </div>
+        <div class="form-group">
+            <label for="examCourse" class="block text-gray-700">Course:</label>
+            <select id="examCourse" name="examCourse" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option th:value="${null}">select option</option>
+                <option name="examCourse" th:each="course : ${courses}" th:value="${course.name}" th:text="${course.name}"></option>
+            </select>
+        </div>
+        <div th:if="${errors != null}">
+            <p class="text-red-500 text-xs italic">Errors:</p>
+            <ul>
+                <li th:each="error : ${errors.allErrors}">
+                    <p class="text-red-500 text-xs italic" th:text="${error.defaultMessage}"></p>
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Update
+        </button>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

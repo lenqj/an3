@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/admin/student/create}" th:object="${student}">
+        <div class="form-group">
+            <label for="username" class="block text-gray-700">Username:</label>
+            <input type="text" id="username" name="username" th:field="${student.username}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${student.username}"></p>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="block text-gray-700">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:field="${student.firstName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${student.firstName}"></p>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="block text-gray-700">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" th:field="${student.lastName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic"  th:errors="${student.lastName}"></p>
+        </div>
+        <div class="form-group">
+            <label for="email" class="block text-gray-700">Email:</label>
+            <input type="email" id="email" name="email" th:field="${student.emailAddress}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${student.emailAddress}"></p>
+        </div>
+        <div class="form-group">
+            <label for="password" class="block text-gray-700">Password:</label>
+            <input type="password" id="password" name="password" th:field="${student.password}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${student.password}"></p>
+        </div>
+        <div class="form-group">
+            <label for="years" class="block text-gray-700">Year:</label>
+            <select id="years" name="years" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option value="0">select option</option>
+                <option th:each="year : ${years}" th:value="${year}" th:text="${year}" th:field="${student.studyYear}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="groups" class="block text-gray-700">Group:</label>
+            <select id="groups" name="groups" class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option value="0">select option</option>
+                <option th:each="group : ${groups}" th:value="${group}" th:text="${group}" th:field="${student.studentGroup}"></option>
+            </select>
+        </div>
+        <button type="submit" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create
+        </button>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/admin/student/update}" th:field="${student}">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" th:field="${student.username}" readonly
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            <p class="text-red-500 text-xs italic" th:errors="${student.username}">*</p>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:field="${student.firstName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            <p class="text-red-500 text-xs italic" th:errors="${student.firstName}">*</p>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" th:field="${student.lastName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            <p class="text-red-500 text-xs italic" th:errors="${student.lastName}">*</p>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:field="${student.emailAddress}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            <p class="text-red-500 text-xs italic" th:errors="${student.emailAddress}">*</p>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+        </div>
+        <div class="form-group">
+            <label for="years">Year:</label>
+            <select class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    id="years" th:field="${student.studyYear}">
+                <option value="0">select option</option>
+                <option th:each="year : ${years}" th:value="${year}" th:text="${year}"></option>
+            </select>
+            <p class="text-red-500 text-xs italic" th:errors="${student.studyYear}">*</p>
+
+        </div>
+        <div class="form-group">
+            <label for="groups">Group:</label>
+            <select class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    id="groups" th:field="${student.studentGroup}">
+                <option value="0">select option</option>
+                <option th:each="group : ${groups}" th:value="${group}" th:text="${group}"></option>
+            </select>
+            <p class="text-red-500 text-xs italic" th:errors="${student.studentGroup}">*</p>
+
+        </div>
+        <button type="submit" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Update
+        </button>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

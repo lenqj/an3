@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-4">Professor Course Operations</h1>
+    <div class="flex flex-col space-y-4">
+        <a th:href="@{~/api/professor/course/create}" class="btn btn-primary">Create</a>
+        <a th:href="@{~/api/professor/course/view-all}" class="btn btn-primary">Read</a>
+        <a th:href="@{~/api/professor/course/delete}" class="btn btn-primary">Delete</a>
+    </div>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

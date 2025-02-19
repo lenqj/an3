@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/professor/exam/delete}">
+        <div class="grid grid-cols-1 gap-4">
+            <th:block th:each="exam : ${exams}">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" id="flexCheckDefault" name="examNames"
+                           th:value="${exam.name}" type="checkbox">
+                    <label class="form-check-label" for="flexCheckDefault" th:text="${exam.name}">
+                    </label>
+                </div>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Delete!" class="btn btn-danger">
+        </div>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

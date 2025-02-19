@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body class="bg-gray-100">
+<div class="flex justify-between bg-gray-800 text-white p-4" th:fragment="menu">
+    <div>
+        <a href="#" class="text-2xl font-bold">WebSinu App</a>
+    </div>
+    <div class="flex space-x-4">
+        <div class="dropdown relative">
+            <button class="hover:bg-gray-700 px-3 py-2 rounded"> <a th:href="@{~/api/professor}">Professors</a> </button>
+        </div>
+        <div class="dropdown relative">
+            <button class="hover:bg-gray-700 px-3 py-2 rounded"> <a th:href="@{~/api/student}">Students</a> </button>
+        </div>
+        <div class="dropdown relative">
+            <button class="hover:bg-gray-700 px-3 py-2 rounded"> <a th:href="@{~/api/admin}">Admin</a> </button>
+        </div>
+        <div class="dropdown relative">
+            <button class="hover:bg-gray-700 px-3 py-2 rounded"> <a th:href="@{~/}">Home</a> </button>
+        </div>
+        <div class="dropdown relative">
+            <button sec:authorize="!isAuthenticated()" class="hover:bg-gray-700 px-3 py-2 rounded"><a th:href="@{~/api/auth/login}">Login</a></button>
+            <button sec:authorize="isAuthenticated()" class="hover:bg-gray-700 px-3 py-2 rounded"><a th:href="@{~/api/auth/profile}">Profile</a></button>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script">
+</script>
+</body>
+</html>

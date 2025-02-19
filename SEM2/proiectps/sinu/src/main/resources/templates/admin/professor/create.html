@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <form method="post" th:action="@{~/api/admin/professor/create}" th:object="${professor}">
+        <div class="form-group">
+            <label for="username" class="block text-gray-700">Username:</label>
+            <input type="text" id="username" name="username" th:field="${professor.username}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${professor.username}"></p>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="block text-gray-700">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:field="${professor.firstName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${professor.firstName}"></p>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="block text-gray-700">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" th:field="${professor.lastName}"
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${professor.lastName}"></p>
+        </div>
+        <div class="form-group">
+            <label for="email" class="block text-gray-700">Email:</label>
+            <input type="email" id="email" name="email" th:field="${professor.emailAddress}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${professor.emailAddress}"></p>
+        </div>
+        <div class="form-group">
+            <label for="password" class="block text-gray-700">Password:</label>
+            <input type="password" id="password" name="password" th:field="${professor.password}" required
+                   class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+            <p class="text-red-500 text-xs italic" th:errors="${professor.password}"></p>
+        </div>
+        <div class="form-group">
+            <label for="selectedCourse" class="block text-gray-700">Course:</label>
+            <select id="selectedCourse" name="selectedCourse"
+                    class="form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <option th:value="null">Select a course</option>
+                <option th:each="course : ${courses}" th:text="${course.name}"></option>
+            </select>
+        </div>
+        <button type="submit"
+                class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create
+        </button>
+    </form>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>

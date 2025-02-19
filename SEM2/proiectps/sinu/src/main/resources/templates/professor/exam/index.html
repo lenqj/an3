@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}"></head>
+<body class="bg-gray-100 font-sans">
+<div th:replace="~{fragments :: menu}"></div>
+<div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-4">Professor Exam Operations</h1>
+    <div class="flex flex-col space-y-4">
+        <a th:href="@{~/api/professor/exam/create}" class="btn btn-primary">Create</a>
+        <a th:href="@{~/api/professor/exam/view-all}" class="btn btn-primary">Read</a>
+        <a th:href="@{~/api/professor/exam/delete}" class="btn btn-primary">Delete</a>
+        <a th:href="@{~/api/professor/exam/add-grade}" class="btn btn-primary">Add grade</a>
+    </div>
+</div>
+<script th:replace="~{fragments :: script}"></script>
+</body>
+</html>
